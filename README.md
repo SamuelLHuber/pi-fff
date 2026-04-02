@@ -25,7 +25,32 @@ A [pi](https://github.com/badlogic/pi-mono) extension that replaces the built-in
 
 Requirements:
 - pi
-- Node.js 18+ or Bun (for dependency installation)
+
+### Install as a pi package
+
+Global install:
+
+```bash
+pi install git:github.com/SamuelLHuber/pi-fff
+```
+
+Project-local install:
+
+```bash
+pi install -l git:github.com/SamuelLHuber/pi-fff
+```
+
+This is the recommended installation method. pi will clone the repo, install dependencies, and load the extension from the `pi` manifest in `package.json`.
+
+### Pin to a release
+
+If you want a fixed version instead of tracking the default branch:
+
+```bash
+pi install git:github.com/SamuelLHuber/pi-fff@v0.1.0
+```
+
+### Local development / manual install
 
 ```bash
 git clone https://github.com/SamuelLHuber/pi-fff.git
