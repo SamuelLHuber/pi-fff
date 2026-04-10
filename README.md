@@ -48,7 +48,7 @@ This is the recommended installation method. pi will clone the repo, install dep
 If you want a fixed version instead of tracking the default branch:
 
 ```bash
-pi install git:github.com/SamuelLHuber/pi-fff@v0.2.0
+pi install git:github.com/SamuelLHuber/pi-fff@v0.2.1
 ```
 
 ### Local development / manual install

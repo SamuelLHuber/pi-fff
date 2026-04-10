@@ -277,11 +277,10 @@ export default function fffExtension(pi: ExtensionAPI) {
 		}));
 	}
 
-	function applyEditorMode(ctx: { ui: { setEditorComponent: (factory: any) => void; setStatus: (k: string, t: string | undefined) => void } }) {
+	function applyEditorMode(ctx: { ui: { setEditorComponent: (factory: any) => void } }) {
 		const mode = getMode();
 		if (mode === "tools-only") {
 			ctx.ui.setEditorComponent(undefined);
-			ctx.ui.setStatus("fff", "FFF tools-only (fd @ autocomplete)");
 			return;
 		}
 
@@ -290,7 +289,6 @@ export default function fffExtension(pi: ExtensionAPI) {
 				new FffAtMentionProvider(baseProvider, getMentionItems),
 			),
 		);
-		ctx.ui.setStatus("fff", "FFF enabled (@ autocomplete + tools)");
 	}
 
 	// --- Flags / lifecycle ---
@@ -305,7 +303,6 @@ export default function fffExtension(pi: ExtensionAPI) {
 		try {
 			await ensureFinder(ctx.cwd);
 			applyEditorMode(ctx);
-			setTimeout(() => ctx.ui.setStatus("fff", undefined), 3000);
 		} catch (e: unknown) {
 			const msg = e instanceof Error ? e.message : String(e);
 			ctx.ui.notify(`FFF init failed: ${msg}`, "error");
