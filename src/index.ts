@@ -154,10 +154,16 @@ class FffAtMentionProvider implements AutocompleteProvider {
 		const { raw, quoted } = parseAtPrefix(atPrefix);
 		if (options.signal.aborted) return null;
 
+		// Absolute and home-relative paths are outside FFF's cwd index — delegate to built-in.
+		if (raw === "~" || raw.startsWith("~/") || raw.startsWith("/")) {
+			return this.base.getSuggestions(lines, cursorLine, cursorCol, options);
+		}
+
 		try {
 			const items = await this.getItems(raw, quoted, options.signal);
 			if (options.signal.aborted) return null;
-			if (items.length === 0) return null;
+			// No FFF results — fall back to built-in rather than showing nothing.
+			if (items.length === 0) return this.base.getSuggestions(lines, cursorLine, cursorCol, options);
 			return { items, prefix: atPrefix };
 		} catch {
 			// If FFF lookup fails unexpectedly, fall back to built-in provider.
