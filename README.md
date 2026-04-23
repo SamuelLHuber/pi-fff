@@ -1,3 +1,8 @@
+----
+Please update to https://github.com/dmtrKovalenko/fff.nvim
+We've migrated the pi-fff extension to be a first class citizen within the fff mono repo.
+---
+
 # pi-fff
 
 A [pi](https://github.com/badlogic/pi-mono) extension that replaces the built-in `find` and `grep` tools with [FFF](https://github.com/dmtrKovalenko/fff.nvim) — a Rust-native, SIMD-accelerated file finder with built-in memory.
